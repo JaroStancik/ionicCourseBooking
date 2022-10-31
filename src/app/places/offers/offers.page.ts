@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { MenuController, NavController } from '@ionic/angular';
-import { Place } from '../place.model';
-import { PlacesService } from '../places.service';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { MenuController, NavController } from "@ionic/angular";
+import { Place } from "../place.model";
+import { PlacesService } from "../places.service";
 
 @Component({
-  selector: 'app-offers',
-  templateUrl: './offers.page.html',
-  styleUrls: ['./offers.page.scss'],
+  selector: "app-offers",
+  templateUrl: "./offers.page.html",
+  styleUrls: ["./offers.page.scss"],
 })
 export class OffersPage implements OnInit {
   place: Place;
@@ -16,25 +16,23 @@ export class OffersPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private navCtrl: NavController,
-    private placesService: PlacesService,
-    private menuCtrl: MenuController
+    private placesService: PlacesService
   ) {}
 
   ngOnInit() {
     this.loadedOffers = this.placesService.offers;
 
     this.activatedRoute.paramMap.subscribe((paramMap) => {
-      if (!paramMap.has('placeId')) {
-        this.navCtrl.navigateBack('/places/tabs/offers');
+      if (!paramMap.has("placeId")) {
+        this.navCtrl.navigateBack("/places/tabs/offers");
         return;
       }
 
-      this.place = this.placesService.getPlace(paramMap.get('placeId'));
+      this.place = this.placesService.getOffer(paramMap.get("placeId"));
     });
   }
 
-  onOpenMenu() {
-    this.menuCtrl.enable(true, 'menu1');
-    this.menuCtrl.open('menu1');
+  onEdit(offerId: string) {
+    console.log("Edited item :", offerId);
   }
 }
