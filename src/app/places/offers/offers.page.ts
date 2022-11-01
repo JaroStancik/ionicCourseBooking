@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { MenuController, NavController } from "@ionic/angular";
+import { ActivatedRoute, Router } from "@angular/router";
+import { IonItemSliding, MenuController, NavController } from "@ionic/angular";
 import { Place } from "../place.model";
 import { PlacesService } from "../places.service";
 
@@ -16,7 +16,8 @@ export class OffersPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private navCtrl: NavController,
-    private placesService: PlacesService
+    private placesService: PlacesService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -32,7 +33,9 @@ export class OffersPage implements OnInit {
     });
   }
 
-  onEdit(offerId: string) {
+  onEdit(offerId: string, slidingItem: IonItemSliding) {
+    slidingItem.close();
+    this.router.navigate(["/", "places", "tabs", "offers", "edit", offerId]);
     console.log("Edited item :", offerId);
   }
 }
