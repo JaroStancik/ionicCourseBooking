@@ -12,10 +12,14 @@
     </ion-item>
   </ion-list>
 
-  <div class="ion-text-center ion-margin">
+  <!-- <div class="ion-text-center ion-margin">
     <ion-spinner color="primary" *ngIf="isLoading"></ion-spinner>
-  </div>
-  <ion-button *ngIf="!isLoading" color="primary" (click)="onLogin()"
+  </div> -->
+  <ion-button
+    class="ion-padding"
+    *ngIf="!isLoading"
+    color="primary"
+    (click)="onLogin()"
     >Login</ion-button
   >
 </ion-content>
